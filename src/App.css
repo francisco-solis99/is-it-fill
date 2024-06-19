@@ -1,0 +1,321 @@
+/* General */
+h1 {
+  text-align: center;
+}
+
+button {
+  border: 0;
+  padding: 1em 1.25em;
+  border-radius: .75em;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.app__wrapper {
+  width: 85%;
+  margin: 0 auto;
+  max-width: 2440px;
+  min-width: 320px;
+}
+
+.app__header {
+  padding: 1em 2em;
+  min-height: 15vh;
+}
+
+.app__title {
+	color: #fff;
+	font-size: 5em;
+  position: relative;
+
+  & span {
+    position: absolute;
+    transform: translateX(-50%);
+  }
+
+  & span:nth-child(1) {
+    color: transparent;
+	  -webkit-text-stroke: 2px #61dafbaa;
+  }
+
+  & span:nth-child(2) {
+    color: #61dafbaa;
+	  animation: wavely 4s ease-in-out infinite;
+  }
+}
+
+.app__main {
+  display: flex;
+  align-items: center;
+  gap: 5em;
+}
+
+.fill__feat{
+  flex: 2;
+}
+
+
+.app__data {
+  flex: 1;
+  display: grid;
+  align-items: center;
+
+  & form {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+  }
+
+  & label {
+    display: flex;
+    gap: .25em;
+    flex-direction: column;
+    font-size: 1rem;
+
+    & span {
+      font-weight: 600;
+      font-size: 1rem;
+    }
+  }
+
+  & input {
+    padding: .5em;
+    border: 1px solid gray;
+    border-radius: .25rem;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.25);
+    transition: all 300ms ease-in-out;
+
+    &:focus {
+      transform: translateY(-3px);
+      outline-color: #61dafbaa
+      box-shadow: -3px -3px 15px #61dafbaa;
+    }
+  }
+
+  & button {
+    align-self: flex-end;
+    margin-block-start: 1em;
+    width: max-content;
+    min-width: 50%;
+    background-color: rgb(29, 29, 29);
+    border: 1px solid rgba(70, 70, 70, 0.85);
+    padding: 1em 1.25em;
+    border-radius: .75em;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 300ms ease-in, color 200ms ease-in;
+
+    &:hover {
+      background-color: #61dafbaa;
+    }
+  }
+}
+
+.capacity__options {
+  margin-top: .25em;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30px, 1fr));
+
+  .radio-button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+
+    & input[type="radio"] {
+      visibility: hidden;
+    }
+
+    & input[type="radio"]:checked  ~ .radio-checkmark:before {
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .radio-checkmark {
+      display: inline-block;
+      position: relative;
+      width: 16px;
+      height: 16px;
+      margin-right: 10px;
+      border: 2px solid #747474;
+      border-radius: 50%;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: #35b3e7;
+        transition: all 0.2s ease-in-out;
+      }
+    }
+  }
+
+}
+
+
+.water__wave {
+  /* This variable is the key */
+
+  width: 370px;
+  aspect-ratio: 1 / 1 ;
+  margin: 0 auto;
+  margin-block: 2em;
+  position: relative;
+  background-color: #35b3e7;
+  border-radius: 100%;
+  box-shadow: inset 0 0 20px 0 rgba(0, 0, 0, 0.7);
+  overflow: hidden;
+  border: 7px solid white;
+
+  & .wave1, & .wave2 {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+  }
+
+  & .wave1 {
+    border-radius: 35%;
+    background: rgba(255, 255, 255, 0.3);
+    animation: water_wave 5s linear infinite;
+  }
+  & .wave2 {
+    border-radius: 45%;
+    animation: water_wave 5s linear infinite;
+  }
+
+  & .wave__value {
+    font-size: 1.75rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #242424;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+}
+
+.fill__data {
+  display: grid;
+  gap: 1.25em;
+  grid-template-columns: repeat(3,1fr);
+
+  & .data__item {
+    padding: .5em;
+    border: 1px solid gray;
+    border-radius: .75em;
+    display: flex;
+    gap: .25em;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  & span:nth-child(2) {
+    font-weight: 600;
+    padding: .15em .75em;
+    background-color: #3c84a3;
+    border-radius: .75em;
+  }
+
+}
+
+.buttons__actions {
+  display: flex;
+  justify-content: center;
+  gap: 1.25em;
+
+  & button {
+    min-width: 7em;
+    transition: background 300ms ease-in-out;
+
+    &:hover {
+      background-color: #3c84a3;
+    }
+  }
+}
+
+@keyframes water_wave {
+  0% {
+    transform:rotate(0deg);
+    bottom: var(--porcentaje);
+  }
+
+  50% {
+    bottom: calc(var(--porcentaje) + 3%);
+  }
+
+  100% {
+    transform: rotate(360deg);
+    bottom: var(--porcentaje);
+  }
+}
+
+
+@keyframes wavely {
+	0%,
+	100% {
+		clip-path: polygon(
+			0% 45%,
+			16% 44%,
+			33% 50%,
+			54% 60%,
+			70% 61%,
+			84% 59%,
+			100% 52%,
+			100% 100%,
+			0% 100%
+		);
+	}
+
+	50% {
+		clip-path: polygon(
+			0% 60%,
+			15% 65%,
+			34% 66%,
+			51% 62%,
+			67% 50%,
+			84% 45%,
+			100% 46%,
+			100% 100%,
+			0% 100%
+		);
+	}
+}
+
+
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+
+
