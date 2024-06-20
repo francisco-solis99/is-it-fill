@@ -15,17 +15,20 @@ button {
   width: 85%;
   margin: 0 auto;
   max-width: 2440px;
-  min-width: 320px;
+  min-width: 300px;
+  padding-inline: 3em;
 }
 
 .app__header {
-  padding: 1em 2em;
-  min-height: 15vh;
+  padding-inline: 2em;
+  padding-block-start: 1em;
+  min-height: 23vh;
+  margin-block-end: 2em;
 }
 
 .app__title {
 	color: #fff;
-	font-size: 5em;
+	font-size: 3.75rem;
   position: relative;
 
   & span {
@@ -46,8 +49,9 @@ button {
 
 .app__main {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 5em;
+  gap: 5em 4em;
 }
 
 .fill__feat{
@@ -63,7 +67,7 @@ button {
   & form {
     display: flex;
     flex-direction: column;
-    gap: 1em;
+    gap: 1.5em;
   }
 
   & label {
@@ -111,10 +115,15 @@ button {
   }
 }
 
+.capacities__wrapper {
+  grid-column: 1 / -1;
+}
+
 .capacity__options {
-  margin-top: .25em;
+  margin-top: .5em;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(30px, 1fr));
+  gap: .75em;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
 
   .radio-button {
     display: flex;
@@ -165,7 +174,7 @@ button {
 .water__wave {
   /* This variable is the key */
 
-  width: 370px;
+  width: 320px;
   aspect-ratio: 1 / 1 ;
   margin: 0 auto;
   margin-block: 2em;
@@ -220,16 +229,23 @@ button {
     gap: .25em;
     align-items: center;
     flex-direction: column;
-  }
 
-  & span:nth-child(2) {
-    font-weight: 600;
-    padding: .15em .75em;
-    background-color: #3c84a3;
-    border-radius: .75em;
+    & > span:nth-child(2) {
+      font-weight: 600;
+      padding: .15em .75em;
+      background-color: #3c84a3;
+      border-radius: .75em;
+    }
   }
-
 }
+
+.fill__counter {
+  font-weight: 600;
+  padding: .15em .75em;
+  background-color: #3c84a3;
+  border-radius: .75em;
+}
+
 
 .buttons__actions {
   display: flex;
@@ -244,6 +260,13 @@ button {
       background-color: #3c84a3;
     }
   }
+}
+
+.app__footer {
+  margin-block: 8em 2em;
+  text-align: center;
+  font-size: .75rem;
+  font-style: italic;
 }
 
 @keyframes water_wave {
@@ -317,5 +340,38 @@ button {
   }
 }
 
+@media screen and (width > 468px) {
 
+  .app__data {
+    & form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+}
+
+
+@media screen and (width > 820px) {
+  .app__main {
+    flex-direction: row;
+  }
+  .app__header {
+    min-height: 15vh;
+  }
+  .app__title {
+    font-size: 5rem;
+  }
+  .app__data {
+
+    & form {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  .water__wave {
+    width: 360px;
+  }
+
+}
 
