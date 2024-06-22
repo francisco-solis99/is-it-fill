@@ -249,8 +249,9 @@ button {
 
 .buttons__actions {
   display: flex;
+  align-items: center;
   justify-content: center;
-  gap: 1.25em;
+  gap: 1.5em;
 
   & button {
     min-width: 7em;
