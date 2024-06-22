@@ -11,6 +11,14 @@ export default function useFill({ initialPorcentaje, capacity, seconds}: {initia
   const valToAdd = useMemo(() => {
     return Number((100 / secsToFill).toFixed(2))
   }, [secsToFill]);
+  const initialTimeLeft = useMemo(() => {
+    console.log('memo de initialTime');
+    const timeLeftInSec =
+    initialPorcentaje === 0
+        ? secsToFill
+        : secsToFill - Number((secsToFill * initialPorcentaje) / 100);
+    return timeLeftInSec
+  }, [initialPorcentaje, secsToFill])
 
   useEffect(() => {
     return () => {
@@ -25,15 +33,9 @@ export default function useFill({ initialPorcentaje, capacity, seconds}: {initia
   }, [porcentajeMeasure])
 
   useEffect(() => {
-    setPorcentajeMeasure(initialPorcentaje)
-    const timeLeftInSec =
-    initialPorcentaje === 0
-        ? secsToFill
-        : secsToFill - Number((secsToFill * initialPorcentaje) / 100)
-
-    setTimeLeft(() => timeLeftInSec)
-
-  }, [secsToFill, initialPorcentaje])
+    setPorcentajeMeasure(() => initialPorcentaje)
+    setTimeLeft(() => initialTimeLeft)
+  }, [initialPorcentaje, initialTimeLeft])
 
   const stopFill = useCallback(() => {
     setPorcentajeMeasure(0)
@@ -67,6 +69,7 @@ export default function useFill({ initialPorcentaje, capacity, seconds}: {initia
 
   return {
     porcentajeMeasure,
+    staticTimeLeft: initialTimeLeft,
     timeLeft,
     toggleFill,
     stopFill,

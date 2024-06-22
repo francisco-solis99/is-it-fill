@@ -1,6 +1,7 @@
 import useFill from "@/hooks/useFill"
 import { useEffect } from "react"
 import DataFill from "@/components/DataFill"
+import Counter from "./Counter"
 
 export default function Measurer({
   initialPorcentajeMeasure,
@@ -18,7 +19,7 @@ export default function Measurer({
   onPausePlay: () => void,
 }) {
 
-  const { porcentajeMeasure, timeLeft, startFill, stopFill, toggleFill } = useFill({
+  const { porcentajeMeasure, timeLeft, startFill, stopFill, toggleFill, staticTimeLeft } = useFill({
     initialPorcentaje: initialPorcentajeMeasure,
     capacity,
     seconds
@@ -59,7 +60,6 @@ export default function Measurer({
         </span>
       </div>
       {
-
         statusApp !== 'init' && (
           <>
             <div className='buttons__actions'>
@@ -77,11 +77,18 @@ export default function Measurer({
                   </button>
                 )
               }
+              {
+                porcentajeMeasure === 100 && (
+                  <div className=''>
+                    <span>Time elapsed</span>
+                    <Counter totalSeconds={staticTimeLeft} />
+                  </div>
+                )
+              }
             </div>
           </>
         )
       }
-
     </>
   )
 }
