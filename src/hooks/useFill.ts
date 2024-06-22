@@ -12,7 +12,6 @@ export default function useFill({ initialPorcentaje, capacity, seconds}: {initia
     return Number((100 / secsToFill).toFixed(2))
   }, [secsToFill]);
   const initialTimeLeft = useMemo(() => {
-    console.log('memo de initialTime');
     const timeLeftInSec =
     initialPorcentaje === 0
         ? secsToFill
@@ -23,7 +22,6 @@ export default function useFill({ initialPorcentaje, capacity, seconds}: {initia
   useEffect(() => {
     return () => {
       if (intervalId.current === null) return
-      console.log('cleaning')
       clearInterval(intervalId.current);
     }
   }, [])

@@ -30,15 +30,12 @@ export default function Measurer({
     console.log({ statusApp });
 
     if (statusApp === 'fill') {
-      console.log('start to fill')
       startFill()
     }
     if (statusApp === 'init') {
-      console.log('start to stop')
       stopFill()
     }
     if (statusApp === 'wait') {
-      console.log('start to wait')
       toggleFill()
     }
   }, [statusApp, initialPorcentajeMeasure, startFill, stopFill, toggleFill])

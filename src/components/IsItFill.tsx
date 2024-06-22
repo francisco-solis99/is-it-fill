@@ -7,9 +7,6 @@ import Measurer from '@/components/Measurer';
 export default function IsItFill() {
   const [statusApp, setStatusApp] = useState('init')
 
-  console.log('render the main');
-  console.log(statusApp)
-
   const secondsByLiter = useRef<number>(0)
   const capacityToFill = useRef<number>(0)
   const initialPorcentajeFilled = useRef<number>(0)
